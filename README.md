@@ -7,3 +7,5 @@ LaTeX poster template themed for Stevens Institute of Technology with baposter
 [Click here](https://keevindoherty.github.io/stevens_latex_poster/poster_portrait.pdf) or on the preview image to see the full-size sample.
 
 To edit the poster formatting, see the [baposter docs](http://www.brian-amberg.de/uni/poster/).
+
+Using `pdflatex` to compile.

@@ -1,6 +1,4 @@
 \documentclass[portrait,final,a1paper,fontscale=0.3]{baposter}
-% Currently set to 24" wide by 36" tall (archD).
-% See baposter.cls for info on changing paper dimensions
 
 \usepackage{calc}
 \usepackage{graphicx}
@@ -15,57 +13,31 @@
 \usepackage{graphicx}
 \usepackage{multicol}
 \input{extra_math.tex}
-%\usepackage{times}
-%\usepackage{helvet}
-%\usepackage{bookman}
 \usepackage{palatino}
 
 \newcommand{\captionfont}{\footnotesize}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% Some math symbols used in the text
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Multicol Settings
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setlength{\columnsep}{1.5em}
 \setlength{\columnseprule}{0mm}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Save space in lists. Use this after the opening of the list
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\compresslist}{%
 \setlength{\itemsep}{1pt}%
 \setlength{\parskip}{0pt}%
 \setlength{\parsep}{0pt}%
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Begin of Document
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Here starts the poster
-%%%---------------------------------------------------------------------------
-%%% Format it to your taste with the options
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Define some colors
 
 \definecolor{stevensred}{HTML}{82318E}
 \definecolor{stevensgray}{rgb}{0.60392, 0.596, 0.60392}
 
-%%
 \begin{poster}%
-  % Poster Options
   {
-  % Show grid to help with alignment
   grid=false,
-  % Column spacing
   colspacing=1em,
-  % Color style
   bgColorOne=white,
   bgColorTwo=white,
   borderColor=stevensgray,
@@ -74,56 +46,30 @@
   headerFontColor=white,
   boxColorOne=white,
   boxColorTwo=stevensgray,
-  % Format of textbox
   textborder=rectangle,
-  % Format of text header
   eyecatcher=true,
   headerborder=closed,
   headerheight=0.1\textheight,
-%  textfont=\sc, An example of changing the text font
   headershape=rectangle,
   headershade=shadelr,
   headerfont=\Large\bf\textsc, %Sans Serif
   textfont={\setlength{\parindent}{1.5em}},
   boxshade=plain,
-%  background=shade-tb,
   background=plain,
   linewidth=2pt
   }
-  % Eye Catcher
   {
   		\includegraphics[height=9.0em]{thu.jpg}
-  %\begin{minipage}{8em}	
-  %   \hfill\vspace{1in}
-  %\end{minipage} 
   } % Empty space, replace with image if desired
-  % Title
   {\bf \textsc{ Info-Detection: An Information-Theoretic Approach to Detect Outlier } }
-  % Authors
   {\textsc{  Feng Zhao, Fei Ma, Yang Li, Shao-Lun Huang and Lin Zhang \\ Tsinghua-Berkeley Shenzhen Institute, Tsinghua University}}
-  % University logo
   {% The makebox allows the title to flow into the logo, this is a hack because of the L shaped logo.
-%    \includegraphics[height=9.0em]{../logo_forum.png}
   }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Now define the boxes that make up the poster
-%%%---------------------------------------------------------------------------
-%%% Each box has a name and can be placed absolutely or relatively.
-%%% The only inconvenience is that you can only specify a relative position 
-%%% towards an already declared box. So if you have a box attached to the 
-%%% bottom, one to the top and a third one which should be in between, you 
-%%% have to specify the top and bottom boxes before you specify the middle 
-%%% box.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %
-    % A coloured circle useful as a bullet with an adjustably strong filling
     \newcommand{\colouredcircle}{%
       \tikz{\useasboundingbox (-0.2em,-0.32em) rectangle(0.2em,0.32em); \draw[draw=black,fill=lightblue,line width=0.03em] (0,0) circle(0.18em);}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \headerbox{Introduction}{name=problem,column=0,row=0}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 We propose a graph-based hierarchical clustering method based on a multivariate information metric.
 The proposed method can generate non-binary hierarchical tree that reveals the intrinsic structures in the data, with no hyper-parameter to tune. 
@@ -133,9 +79,7 @@ Experiments show that the clustering result outperforms
 other hierarchical clustering techniques and is very suitable to find the complex community structure.
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \headerbox{References}{name=references,column=0,above=bottom}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \smaller
     \bibliographystyle{ieee}
     \renewcommand{\section}[2]{\vskip 0.05em}
@@ -173,15 +117,11 @@ Kiyohito Nagano, Yoshinobu Kawahara, and Satoru Iwata.
    \vspace{0.05em}
   }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \headerbox{Info-clustering}{name=method,column=0,below=problem, above=references}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Consider a graph $G(V, E)$ 
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \headerbox{Algorithm}{name=results,column=1,span=2,row=0}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{multicols}{2}
 
@@ -211,7 +151,7 @@ Solving the following problem sequentially for $t=1,\dots,\abs{V}$ (\textsf{pdt}
 		\includegraphics[width=0.27\linewidth]{img/example_pst_single.pdf}
 }
 
-To compute $\tilde{h}(\lambda)$, we combine Algorithm \ref{alg:pmfT} and \textsf{pmf}.
+To compute $\tilde{h}(\lambda)$, we combine Algorithm and \textsf{pmf}.
 
 {
 
@@ -227,7 +167,6 @@ Starting from a given flow map when computing $P'$.
 }
 
 \headerbox{How to choose graph weight}{name=example,below=results,column=1,span=2}{
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{multicols}{2}
 The clustering tree has no stem nodes if and only if
 \begin{equation}
@@ -241,9 +180,7 @@ Suppose $S_1, S_2 $ are complete graph with size $n$ equal weight $w_{ij}=n$. Th
 	\end{multicols}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \headerbox{Experimental Results}{name=experiment,column=1, span=2,below=example, above=bottom}{
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{multicols}{2}
 We tested our method "graph-based info-clustering" to cluster multi-dimensional vectors. We prepare three groups of data.
 
