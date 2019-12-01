@@ -71,12 +71,8 @@
 
   \headerbox{Introduction}{name=problem,column=0,row=0}{
 
-We propose a graph-based hierarchical clustering method based on a multivariate information metric.
-The proposed method can generate non-binary hierarchical tree that reveals the intrinsic structures in the data, with no hyper-parameter to tune. 
-The hierarchical tree can be computed efficiently by 
-invoking parametric maximum flow algorithm. 
-Experiments show that the clustering result outperforms
-other hierarchical clustering techniques and is very suitable to find the complex community structure.
+Outlier detection is one of major task in unsupervised learning. We propose a cluster analysis based method called Info-Detection. It can determine the number of outliers automatically. To implement Info-Detection, we use some graph theory techniques and make it usable on small dataset.
+
 }
 
   \headerbox{References}{name=references,column=0,above=bottom}{
@@ -86,20 +82,11 @@ other hierarchical clustering techniques and is very suitable to find the comple
       \begin{thebibliography}{1}\itemsep=-0.01em
       \setlength{\baselineskip}{0.4em}
       
-\bibitem{vegabrown} C.~Chan, A.~Al-Bashabsheh, and Q.~Zhou.
-\newblock Info-clustering: An efficient algorithm by network information flow.
-\newblock In {\em 2017 Information Theory and Applications Workshop (ITA)},
-  pages 1--10.
-
 \bibitem{sparsekernel} C.~Chan, A.~Al-Bashabsheh, Q.~Zhou, T.~Kaced, and T.~Liu.
 \newblock Info-clustering: A mathematical theory for data clustering.
 \newblock {\em IEEE Transactions on Molecular, Biological and Multi-Scale
   Communications}, 2(1):64--91, 2016.
   
-\bibitem{jwang} G.~Gallo, M.~D. Grigoriadis, and R.~E. Tarjan.
-\newblock A fast parametric maximum flow algorithm and applications.
-\newblock {\em SIAM J. Comput.}, 18(1):30--55, 1989.
-
 \bibitem{RN4}
 Vladimir Kolmogorov.
 \newblock A faster algorithm for computing the principal sequence of partitions
@@ -109,8 +96,7 @@ Vladimir Kolmogorov.
 \bibitem{RN7}
 Kiyohito Nagano, Yoshinobu Kawahara, and Satoru Iwata.
 \newblock Minimum average cost clustering.
-\newblock In J.~D. Lafferty, C.~K.~I. Williams, J.~Shawe-Taylor, R.~S. Zemel,
-  and A.~Culotta, editors, {\em Advances in Neural Information Processing
+\newblock {\em Advances in Neural Information Processing
   Systems 23}, pages 1759--1767. Curran Associates, Inc., 2010.
 
       \end{thebibliography}
