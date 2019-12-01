@@ -118,87 +118,40 @@ which can be used as clustering criterion.
 
 }
 
-\headerbox{Algorithm}{name=results,column=1,span=2,row=0}{
+\headerbox{Formulation of Info-Detection}{name=formulation,column=1,span=2, row=0}{
 
-\begin{multicols}{2}
+Info-clustering has a series of threshold values and we use the largest one to distinguish inliers from outliers.
 
-The clustering result can be achieved by solving the principal sequence of partition for the input graph.
-\begin{align}\label{eq:hL}
-	h_{\P}(\lambda) &=  f[\P] - \abs{\P} \lambda  \\
-	h(\lambda) &= \min_{\P \in \Pi'(V)} h_{\P}(\lambda)
-\end{align}
-Solving the following problem sequentially for $t=1,\dots,\abs{V}$ (\textsf{pdt}).
-\begin{align}
-	\tilde{h}_{\lambda}(T) &= f(T) - \lambda - y^{\lambda}(T)\\
-	\tilde{h}(\lambda) & = \min_{t \in T \subseteq V} \tilde{h}_{\lambda}(T) \label{eq:pmq}
-\end{align}
-\begin{theorem}[Principal Sequence]
-	\begin{align}\notag
-		T^{\lambda} & =\begin{cases}
-			T_0 & \lambda < \lambda_1 \\
-			T_i & \lambda_i \leq \lambda < \lambda_{i+1}\\
-			T_k & \lambda \geq \lambda_{k}
-		\end{cases} \\
-		T_k & \subsetneq  \dots \subsetneq T_1 \subsetneq T_0 \label{eq:Alambda}				
-	\end{align}
-\end{theorem}
-{
-		\includegraphics[width=0.27\linewidth]{img/example_directed.pdf}~
-		\includegraphics[width=0.3\linewidth]{img/example_st.pdf}~
-		\includegraphics[width=0.27\linewidth]{img/example_pst_single.pdf}
+To make predictions on new observation, theoretically we can re-compute for the whole graph. We have shown that this is equivalent to use a simple similarity summation scheme:
+\begin{equation*}
+ \sum_{i \textrm{ is inliner} } w_{ij} 	 \mathop{\gtreqless}_{j \textrm{ is outlier}}^{j \textrm{ is inliner}} \textrm{ threshold }
+\end{equation*}
+
+\hspace{-1.2em}\includegraphics[width=\linewidth]{img/outlier_boundary_illustration}
+
 }
 
-To compute $\tilde{h}(\lambda)$, we combine Algorithm and \textsf{pmf}.
+\headerbox{Algorithm}{name=algorithm,column=1,span=2, below=formulation}{
+
+
+
+Info-Detection criterion derives from the hierarchical tree of info-clustering. This tree is related with a special
+structure in graph theory called principal sequence of partition.
+
+We make use of the property of hierarchical structure and propose an improved algorithm to compute this structure. This decreases the time complexity from $O(n^5)$ to $O(n^4)$ for dense graphs in general.
 
 {
-
-}
-\begin{multicols}{2}		
-Converting $G$ to $\widetilde{G}$ by adding $s$ and modifying weights.
-Starting from a given flow map when computing $P'$.
-
-\includegraphics[width=0.65\linewidth]{img/pdt.pdf}
-\end{multicols}
-\end{multicols}
-
+\hspace{-1em}\includegraphics[width=\linewidth]{img/alg_illustration.pdf}
 }
 
-\headerbox{How to choose graph weight}{name=example,below=results,column=1,span=2}{
-	\begin{multicols}{2}
-The clustering tree has no stem nodes if and only if
-\begin{equation}
-	\frac{f[\P]}{\abs{\P}-1} \geq \frac{\sum_{(i,j) \in E} w_{ij}}{\abs{V}-1}				
-\end{equation}
-holds for any partition $\abs{\P} > 1$.
-
-If $w_{ij} + w_{jk} \geq w_{ki}$ for any different triple $i, j, k \in V$, then the clustering tree has no stem nodes.
-
-Suppose $S_1, S_2 $ are complete graph with size $n$ equal weight $w_{ij}=n$. There are $m$ edges between the two graphs and all inter-connection edges have equal weight 1. Then for $V=S_1\cup S_2$, we have
-	\end{multicols}
+After the tree structure and critical values are obtained, we use the largest value as the detection threshold and the corresponding childrens as inliners.
 }
 
-  \headerbox{Experimental Results}{name=experiment,column=1, span=2,below=example, above=bottom}{
-\begin{multicols}{2}
-We tested our method "graph-based info-clustering" to cluster multi-dimensional vectors. We prepare three groups of data.
 
-\textbf{1)} Four Gaussian blobs 
 
-\textbf{2)} Three concentric circles
-
-\textbf{3)} UCI glass dataset with 214 samples, 6 classes
-
-clustering result of Gaussian and Circle dataset is shown on above figure.
-\\
-
-In some parameter combination, the hierarchical tree obtained by graph-based info-clustering is the same as that of the ground truth.\\
-
-{
-\includegraphics[width=0.46\linewidth]{img/z_in_1.pdf}
-\includegraphics[width=0.46\linewidth]{img/z_in_2.pdf}
-}
-
-\end{multicols}
-
+  \headerbox{Experimental Results}{name=experiment,column=1, span=2,below=algorithm, above=bottom}{
+\vspace{-0.3em}
+\hspace{-1.2em}\includegraphics[width=\linewidth]{img/experimental_results}
 }
 
 
