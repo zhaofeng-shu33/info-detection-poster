@@ -1061,7 +1061,7 @@
         \begin{minipage}{\baposter@titleimage@textwidth}%
           \begin{center}%
           \textbf{\Huge #3}\\%
-          {\Large #4}%
+          {\large #4}%
           \end{center}%
         \end{minipage}
       };%
