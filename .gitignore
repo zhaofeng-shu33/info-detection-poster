@@ -1,6 +1,5 @@
 .DS_Store
 build/*
-*.pdf
 *.synctex.gz
 *.aux
 *.log
