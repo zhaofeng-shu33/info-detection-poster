@@ -107,7 +107,7 @@ Kiyohito Nagano, Yoshinobu Kawahara, and Satoru Iwata.
 Info-Detection derives from info-clustering.
 
 Info-clustering is an information theoretic clustering method and
-can produce hierachical tree for the random variables to be clustered. 
+can produce hierarchical tree for the random variables to be clustered. 
 
 Info-Detection defines a multi-variate information for a directed graph
 which can be used as clustering criterion.
@@ -124,7 +124,7 @@ Info-clustering has a series of threshold values and we use the largest one to d
 
 To make predictions on new observation, theoretically we can re-compute for the whole graph. We have shown that this is equivalent to use a simple similarity summation scheme:
 \begin{equation*}
- \sum_{i \textrm{ is inliner} } w_{ij} 	 \mathop{\gtreqless}_{j \textrm{ is outlier}}^{j \textrm{ is inliner}} \textrm{ threshold }
+ \sum_{i \textrm{ is inlier} } w_{ij} 	 \mathop{\gtreqless}_{j \textrm{ is outlier}}^{j \textrm{ is inlier}} \textrm{ threshold }
 \end{equation*}
 
 \hspace{-1.2em}\includegraphics[width=\linewidth]{img/outlier_boundary_illustration}
@@ -144,7 +144,7 @@ We make use of the property of hierarchical structure and propose an improved al
 \hspace{-1em}\includegraphics[width=\linewidth]{img/alg_illustration.pdf}
 }
 
-After the tree structure and critical values are obtained, we use the largest value as the detection threshold and the corresponding childrens as inliners.
+After the tree structure and critical values are obtained, we use the largest value as the detection threshold and the corresponding children as inliers.
 }
 
 
