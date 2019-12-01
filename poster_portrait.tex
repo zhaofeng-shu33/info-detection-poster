@@ -1,4 +1,4 @@
-\documentclass[portrait,final,a0paper,fontscale=0.3]{baposter}
+\documentclass[portrait,final,a1paper,fontscale=0.3]{baposter}
 % Currently set to 24" wide by 36" tall (archD).
 % See baposter.cls for info on changing paper dimensions
 
@@ -174,35 +174,9 @@ Kiyohito Nagano, Yoshinobu Kawahara, and Satoru Iwata.
   }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \headerbox{Graph-based Info-clustering}{name=method,column=0,below=problem, above=references}{
+  \headerbox{Info-clustering}{name=method,column=0,below=problem, above=references}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Consider a graph $G(V, E)$ where the edge weight $w$ is nonnegative and represents pairwise similarity of nodes. To measure the similarity shared by multiple nodes, we use the following definition.
-\begin{definition}[multivariate similarity]\label{def:ms}
-	\begin{align}
-		I_{\P}(Z_V) & := \frac{ f[\P] }{  \abs{\mathcal{P}} - 1 }\\
-		I(Z_V) & := \min_{\mathcal{P} \in \Pi'(V)} I_{\mathcal{P}}(Z_V)  \label{eq:ms}
-	\end{align}
-\end{definition}
-
-Based on Definition \eqref{def:ms}, we have two aproaches of graph-based info-clustering.
-
-\textbf{top-down}: For a graph $G$, suppose $I_{\P^*}(Z_V)=I(Z_V)$, each element of $\P^*$ is a child of the hierarchical tree root $V$. For each child node set $C$, use partition $\P_C$ where $I(Z_C)=I_{\P_C}(Z_C)$ to split it until this tree branch is divided into singletons. \\
-
-\textbf{bottom-up}: For a graph $G$, suppose $I(Z_C) = \max_{B\subseteq V} I(Z_B)$ and $C$ is maximal, merge elements of $C$ together and contract $G$ to a smaller graph. At each step select the set with maximal multivariate similarity to contract the graph until the graph is contracted to a single node, which is the tree root. \\
-
-\includegraphics[width=0.9\linewidth]{img/two_approach.pdf}
-
-\begin{equation*}
-	\P = 
-	\begin{cases}
-		\{\{1,2,3,4\}\} & \lambda < 0.9 \\
-		\{\{1,2\},\{3,4\}\} & 0.9 \leq \lambda < 1 \\
-		\{\{1\},\{2\},\{3,4\}\} & 1 \leq \lambda < 2\\
-		\{\{1\},\{2\},\{3\},\{4\}\} & \lambda \geq 2
-	\end{cases}
-\end{equation*}
-
-\includegraphics[width=0.77\linewidth]{img/threshold.pdf}
+Consider a graph $G(V, E)$ 
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -238,33 +212,7 @@ Solving the following problem sequentially for $t=1,\dots,\abs{V}$ (\textsf{pdt}
 }
 
 To compute $\tilde{h}(\lambda)$, we combine Algorithm \ref{alg:pmfT} and \textsf{pmf}.
-\begin{algorithm}[H]
-	\caption{
-		{\footnotesize
-		Parametric Computing of $T^{\lambda} = \argmin_{t\in T} g_{\lambda}(T)$
-		}
-	}\label{alg:pmfT}
-	\begin{algorithmic}[1]
-		\REQUIRE set $V$, $t \in V$, function $g_{\lambda}$ whose domain is $V$.
-		\ENSURE An ordered array \textbf{L} which contains $\lambda_1, \dots \lambda_k$ and a reversely ordered array $T^{\lambda}$ which contains $T_0,\dots, T_k$. (defined in equation \eqref{eq:Alambda})
-		\STATE \textbf{L}, $A^{\lambda} \leftarrow$ empty arrays of size $\abs{V}$
-		\STATE $Q \leftarrow \argmin_{A\in V} g_{-\epsilon}(A), P \leftarrow \{ t \}$ \label{alg:uini}
-		\STATE add $Q$ and $P$ to $T^{\lambda}$
-		\STATE \texttt{Split}$(Q,P)$
-		\FUNCTION{\texttt{Split}$(Q,P)$}
-		\STATE Let $\tilde{\lambda}_2$ be the solution to $g_{\lambda}(Q) =  g_{\lambda}(P)$
-		\STATE $h' = g_{\tilde{\lambda}_2}(Q)$
-		\STATE $P' =\argmin_{A\in V} g_{\tilde{\lambda}_2}(A)$  \label{alg:Pap}
-		\IF{$ g_{\tilde{\lambda}_2}(P') = h'$}
-		\STATE add  $\tilde{\lambda}_2$ to $\mathbf{L}$
-		\ELSE
-		\STATE add $P'$ to $T^{\lambda}$ \label{alg:addP}
-		\STATE \texttt{Split}$(Q,P')$
-		\STATE \texttt{Split}$(P',P)$
-		\ENDIF
-		\ENDFUNCTION
-	\end{algorithmic}
-\end{algorithm}
+
 {
 
 }
@@ -290,12 +238,6 @@ holds for any partition $\abs{\P} > 1$.
 If $w_{ij} + w_{jk} \geq w_{ki}$ for any different triple $i, j, k \in V$, then the clustering tree has no stem nodes.
 
 Suppose $S_1, S_2 $ are complete graph with size $n$ equal weight $w_{ij}=n$. There are $m$ edges between the two graphs and all inter-connection edges have equal weight 1. Then for $V=S_1\cup S_2$, we have
-\begin{equation*}
-	I(Z_V) = \begin{cases}
-		m & m <\frac{n^2}{2}, S_1,S_2 \textrm{are non-trivial} \\
-		\frac{m+n^2(n-1)}{2n-1} & m\geq \frac{n^2}{2}, \textrm{only trivial cluster} 
-	\end{cases}
-\end{equation*}
 	\end{multicols}
 }
 
@@ -311,37 +253,8 @@ We tested our method "graph-based info-clustering" to cluster multi-dimensional 
 
 \textbf{3)} UCI glass dataset with 214 samples, 6 classes
 
-{ 
-	\includegraphics[width=0.96\linewidth]{img/4part}
-	}	
-	
-	{	
-	\includegraphics[width=0.96\linewidth]{img/3circle}
-}
-
-
 clustering result of Gaussian and Circle dataset is shown on above figure.
 \\
-
-\begin{tabular}{lp{1.1cm}cc}
-\hline
- Adjusted rand index   &   Gaussian &   Circle &   Glass \\
-\hline
- agglomerative         &       1.00 &     1.00 &    0.21 \\
- affinity propagation  &       1.00 &     0.14 &    0.19 \\
- info-clustering       &       1.00 &     1.00 &    0.30 \\
-\hline
-\end{tabular}
-\\
-
-In all three dataset, graph-based info-clustering reaches the highest score.
-
-We also evaluated our method on community detection problems. 
-
-{
-\includegraphics[width=0.4\linewidth]{img/two_level.pdf}
-\includegraphics[width=0.46\linewidth]{img/tree_info-clustering.pdf} 
-}
 
 The community has a two-level structure with configuration paramter $\{z_{\mathrm{in}_1}, z_{\mathrm{in}_2}, z_{\mathrm{out}} \}$.
 In some parameter combination, the hierarchical tree obtained by graph-based info-clustering is the same as that of the ground truth.\\
@@ -351,12 +264,6 @@ In some parameter combination, the hierarchical tree obtained by graph-based inf
 \includegraphics[width=0.46\linewidth]{img/z_in_2.pdf}
 }
 
-{
-\includegraphics[width=0.46\linewidth]{img/z_o.pdf}~
-\includegraphics[width=0.4\linewidth]{github_qrcode.png}
-}
-
-As shown, graph-based info-clustering produces more similar tree structures.
 \end{multicols}
 
 }
